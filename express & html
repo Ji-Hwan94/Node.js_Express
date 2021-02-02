@@ -1,0 +1,27 @@
+ //express를 사용하여 서버에 연결
+ const express = require("express");
+ const app = express();
+ 
+ app.get("/", (req, res) => {  // res.send("Hi");
+ });
+ 
+ app.get("/login", (req, res) => {  // res.send("여기는 로그인 입니다.")
+ })
+ 
+ app.listen(3000, () => {  // console.log("서버오픈");
+ })
+
+// express 없이 서버에 연결 (express를 쓰는 이유: 코드가 길어진다.  1)if 문을 넣어야한다.  2) charset=utf-8을 통해 한국어 번역을 해야한다.
+const http = require("http");
+const { charsets } = require("mime");
+const app = http.createServer((req, res) => {
+    res.writeHead(200, {"Content-Type": "text/html; charset=utf-8"});
+    if (req.url === "/") {
+        res.end("여기는 루트");
+    } else if (req.url === "/login"){
+        res.end("여기는 로그인");
+    }
+});
+app.listen(3001, () => {
+    console.log("http로 여는 서버");
+});
